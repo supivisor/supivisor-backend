@@ -9,7 +9,7 @@ export class HardwareStatusService extends ShellCommandService {
   //#region Commands
   private readonly READ_RAM_USAGE_WINDOWS_MOCK = 'echo 3874 187';
   private readonly READ_CPU_TEMPERATURE_WINDOWS_MOCK = 'echo 45';
-  private readonly READ_CPU_USAGE_WINDOWS_MOCK = 'echo 92.9 id';
+  private readonly READ_CPU_USAGE_WINDOWS_MOCK = 'echo. 92.9 id';
   /** Gets the CPU temperature, for example: 47.2 */
   private readonly READ_CPU_TEMPERATURE_RASPBERRY =
     'vcgencmd measure_temp | egrep -o "[0-9]+.[0-9]+"';
