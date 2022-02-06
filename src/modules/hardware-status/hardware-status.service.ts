@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { ShellCommandService } from '../shell-command/shell-command.service';
 import { CommandMappers } from './utils/command-mappers';
-import { combineLatest, Observable, tap } from 'rxjs';
+import { combineLatest, map, Observable } from 'rxjs';
 import { ShellCommandResult } from '../shell-command/models/shell-command-result';
+import { HardwareStatus } from './models/hardware-status';
 
 @Injectable()
 export class HardwareStatusService extends ShellCommandService {
@@ -29,14 +30,12 @@ export class HardwareStatusService extends ShellCommandService {
   private readonly READ_CPU_USAGE = this.READ_CPU_USAGE_WINDOWS_MOCK;
   //#endregion
 
-  getHardwareStatus(): void {
-    combineLatest([
+  getHardwareStatus(): Observable<HardwareStatus> {
+    return combineLatest([
       this.getCpuTemperature(),
-      this.getRamUsage(),
       this.getCpuUsage(),
-    ])
-      .pipe(tap(console.log))
-      .subscribe();
+      this.getRamUsage(),
+    ]).pipe(map((res) => new HardwareStatus(res)));
   }
 
   private getCpuTemperature(): Observable<ShellCommandResult<number>> {
@@ -46,17 +45,17 @@ export class HardwareStatusService extends ShellCommandService {
     );
   }
 
-  private getRamUsage(): Observable<ShellCommandResult<number[]>> {
-    return this.executeCommand<number[]>(
-      this.READ_RAM_USAGE,
-      CommandMappers.ramUsageMapper,
-    );
-  }
-
   private getCpuUsage(): Observable<ShellCommandResult<number>> {
     return this.executeCommand<number>(
       this.READ_CPU_USAGE,
       CommandMappers.cpuUsageMapper,
+    );
+  }
+
+  private getRamUsage(): Observable<ShellCommandResult<number[]>> {
+    return this.executeCommand<number[]>(
+      this.READ_RAM_USAGE,
+      CommandMappers.ramUsageMapper,
     );
   }
 }

@@ -34,6 +34,7 @@ export class ShellCommandService {
         shellCommandResult.resultParsed = mapper(shellCommandResult.result);
       }
       resultObservable.next(shellCommandResult);
+      resultObservable.complete();
     };
   }
 
