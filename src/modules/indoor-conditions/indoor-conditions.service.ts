@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ShellCommandService } from '../shell-command/shell-command.service';
 import { map, Observable } from 'rxjs';
-import { IndoorConditionsCommandParsers } from './utils/command-mappers';
+import { IndoorConditionsCommandParsers } from './utils/indoor-conditions-command-parsers';
 
 @Injectable()
 export class IndoorConditionsService {

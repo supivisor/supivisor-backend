@@ -43,21 +43,21 @@ export class HardwareStatusService {
   private getCpuTemperature(): Observable<ShellCommandResult<number>> {
     return this.commandService.executeCommand<number>(
       this.READ_CPU_TEMPERATURE,
-      HardwareStatusCommandParsers.cpuTemperatureMapper,
+      HardwareStatusCommandParsers.parseCpuTemperature,
     );
   }
 
   private getCpuUsage(): Observable<ShellCommandResult<number>> {
     return this.commandService.executeCommand<number>(
       this.READ_CPU_USAGE,
-      HardwareStatusCommandParsers.cpuUsageMapper,
+      HardwareStatusCommandParsers.parseCpuUsage,
     );
   }
 
   private getRamUsage(): Observable<ShellCommandResult<number[]>> {
     return this.commandService.executeCommand<number[]>(
       this.READ_RAM_USAGE,
-      HardwareStatusCommandParsers.ramUsageMapper,
+      HardwareStatusCommandParsers.parseRamUsage,
     );
   }
 }
