@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { ShellCommandService } from '../shell-command/shell-command.service';
-import { CommandMappers } from './utils/command-mappers';
+import { HardwareStatusCommandParsers } from './utils/hardware-status-command-parsers';
 import { combineLatest, map, Observable } from 'rxjs';
 import { ShellCommandResult } from '../shell-command/models/shell-command-result';
 import { HardwareStatus } from './models/hardware-status';
 
 @Injectable()
-export class HardwareStatusService extends ShellCommandService {
+export class HardwareStatusService {
   //#region Commands
   private readonly READ_RAM_USAGE_WINDOWS_MOCK = 'echo 3874 187';
   private readonly READ_CPU_TEMPERATURE_WINDOWS_MOCK = 'echo 45';
@@ -30,6 +30,8 @@ export class HardwareStatusService extends ShellCommandService {
   private readonly READ_CPU_USAGE = this.READ_CPU_USAGE_WINDOWS_MOCK;
   //#endregion
 
+  constructor(private commandService: ShellCommandService) {}
+
   getHardwareStatus(): Observable<HardwareStatus> {
     return combineLatest([
       this.getCpuTemperature(),
@@ -39,23 +41,23 @@ export class HardwareStatusService extends ShellCommandService {
   }
 
   private getCpuTemperature(): Observable<ShellCommandResult<number>> {
-    return this.executeCommand<number>(
+    return this.commandService.executeCommand<number>(
       this.READ_CPU_TEMPERATURE,
-      CommandMappers.cpuTemperatureMapper,
+      HardwareStatusCommandParsers.cpuTemperatureMapper,
     );
   }
 
   private getCpuUsage(): Observable<ShellCommandResult<number>> {
-    return this.executeCommand<number>(
+    return this.commandService.executeCommand<number>(
       this.READ_CPU_USAGE,
-      CommandMappers.cpuUsageMapper,
+      HardwareStatusCommandParsers.cpuUsageMapper,
     );
   }
 
   private getRamUsage(): Observable<ShellCommandResult<number[]>> {
-    return this.executeCommand<number[]>(
+    return this.commandService.executeCommand<number[]>(
       this.READ_RAM_USAGE,
-      CommandMappers.ramUsageMapper,
+      HardwareStatusCommandParsers.ramUsageMapper,
     );
   }
 }

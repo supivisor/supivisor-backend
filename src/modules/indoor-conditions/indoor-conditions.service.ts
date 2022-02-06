@@ -12,9 +12,10 @@ export class IndoorConditionsService {
   private readonly READ_INDOOR_CONDITIONS_RASPBERRY =
     'python ~/Projects/indoor-temperature-monitor/indoor-temperature.py';
 
+  // private readonly READ_INDOOR_CONDITIONS =
+  //   this.READ_INDOOR_CONDITIONS_RASPBERRY;
   private readonly READ_INDOOR_CONDITIONS =
     this.READ_INDOOR_CONDITIONS_WINDOWS_MOCK;
-  // private readonly READ_WEATHER = this.READ_WEATHER_WINDOWS_MOCK;
   //#endregion
 
   constructor(private shellCommandService: ShellCommandService) {}

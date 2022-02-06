@@ -1,4 +1,4 @@
-export class CommandMappers {
+export class HardwareStatusCommandParsers {
   static cpuTemperatureMapper = (commandResult: string): number => {
     return parseInt(commandResult);
   };

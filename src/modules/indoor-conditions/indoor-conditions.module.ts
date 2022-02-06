@@ -4,7 +4,7 @@ import { IndoorConditionsController } from './indoor-conditions.controller';
 import { ShellCommandService } from '../shell-command/shell-command.service';
 
 @Module({
-  providers: [IndoorConditionsService, ShellCommandService],
   controllers: [IndoorConditionsController],
+  providers: [IndoorConditionsService, ShellCommandService],
 })
 export class IndoorConditionsModule {}
