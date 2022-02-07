@@ -21,13 +21,13 @@ export class HardwareStatusService {
   private readonly READ_CPU_USAGE_RASPBERRY =
     'top -b -n1 | head -n 3 | egrep "\\%Cpu\\(s\\)" | tr "," "\\n" | egrep "[0-9]+\\.[0-9]+.+(id)"';
 
-  // private readonly READ_CPU_TEMPERATURE = this.READ_CPU_TEMPERATURE_RASPBERRY;
-  // private readonly READ_RAM_USAGE = this.READ_RAM_USAGE_RASPBERRY;
-  // private readonly READ_CPU_USAGE = this.READ_CPU_USAGE_RASPBERRY;
-  private readonly READ_CPU_TEMPERATURE =
-    this.READ_CPU_TEMPERATURE_WINDOWS_MOCK;
-  private readonly READ_RAM_USAGE = this.READ_RAM_USAGE_WINDOWS_MOCK;
-  private readonly READ_CPU_USAGE = this.READ_CPU_USAGE_WINDOWS_MOCK;
+  private readonly READ_CPU_TEMPERATURE = this.READ_CPU_TEMPERATURE_RASPBERRY;
+  private readonly READ_RAM_USAGE = this.READ_RAM_USAGE_RASPBERRY;
+  private readonly READ_CPU_USAGE = this.READ_CPU_USAGE_RASPBERRY;
+  // private readonly READ_CPU_TEMPERATURE =
+  //   this.READ_CPU_TEMPERATURE_WINDOWS_MOCK;
+  // private readonly READ_RAM_USAGE = this.READ_RAM_USAGE_WINDOWS_MOCK;
+  // private readonly READ_CPU_USAGE = this.READ_CPU_USAGE_WINDOWS_MOCK;
   //#endregion
 
   constructor(private commandService: ShellCommandService) {}
