@@ -10,11 +10,8 @@ git pull
 # Build project
 npm run build
 
-# Copy built ap to a chosen directory outside the project
-sudo cp -r dist /home/pi/Server/supivisor-backend/
-
-# Enter the chosen directory
-cd /home/pi/Server/supivisor-backend/
+# Go to directory containing built app
+cd dist
 
 # Run app
 node main.js
