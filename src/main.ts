@@ -4,9 +4,19 @@ import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.int
 import * as fs from 'fs';
 
 async function bootstrap() {
+  let certFile, keyFile;
+  try {
+    certFile = fs.readFileSync('src/certs/supivisor-certificate.pem');
+    keyFile = fs.readFileSync('src/certs/supivisor-key.pem');
+  } catch {
+    // Built app has different files structure - don't have src directory as root
+    certFile = fs.readFileSync('certs/supivisor-certificate.pem');
+    keyFile = fs.readFileSync('certs/supivisor-key.pem');
+  }
+
   const httpsOptions = {
-    cert: fs.readFileSync('src/certs/supivisor-certificate.pem'),
-    key: fs.readFileSync('src/certs/supivisor-key.pem'),
+    cert: certFile,
+    key: keyFile,
   };
   const app = await NestFactory.create(AppModule, {
     httpsOptions: httpsOptions,

@@ -3,5 +3,10 @@
   "sourceRoot": "src",
   "generateOptions": {
     "spec": false
+  },
+  "compilerOptions": {
+    "assets": [
+      "certs/*"
+    ]
   }
 }
