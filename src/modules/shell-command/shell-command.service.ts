@@ -7,7 +7,7 @@ import { Observable, Subject } from 'rxjs';
 export class ShellCommandService {
   executeCommand<T>(
     command: string,
-    resultMapper: (result: string) => T,
+    resultMapper?: (result: string) => T,
   ): Observable<ShellCommandResult<T>> {
     const shellResult = new Subject<ShellCommandResult<T>>();
 
@@ -21,7 +21,7 @@ export class ShellCommandService {
 
   private getCommandResultHandler<T>(
     resultObservable: Subject<ShellCommandResult<T>>,
-    mapper: (result: string) => T,
+    mapper?: (result: string) => T,
   ) {
     return (
       error: shell.ExecException | null,
@@ -30,7 +30,7 @@ export class ShellCommandService {
     ): void => {
       const shellCommandResult =
         ShellCommandService.createShellCommandResult<T>(error, stdout, stderr);
-      if (shellCommandResult.success) {
+      if (shellCommandResult.success && !!mapper) {
         shellCommandResult.resultParsed = mapper(shellCommandResult.result);
       }
       resultObservable.next(shellCommandResult);

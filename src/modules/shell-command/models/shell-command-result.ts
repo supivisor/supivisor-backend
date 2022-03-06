@@ -1,6 +1,6 @@
 export interface ShellCommandResult<T> {
   success: boolean;
   result: string;
-  resultParsed: T;
+  resultParsed?: T;
   error: string;
 }

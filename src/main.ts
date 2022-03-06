@@ -4,6 +4,7 @@ import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.int
 import * as fs from 'fs';
 
 async function bootstrap() {
+  const PORT = 8443;
   let certFile, keyFile;
   try {
     certFile = fs.readFileSync('src/certs/supivisor-certificate.pem');
@@ -28,6 +29,6 @@ async function bootstrap() {
     ],
   };
   app.enableCors(corsOptions);
-  await app.listen(8443);
+  await app.listen(PORT);
 }
 bootstrap();
