@@ -13,7 +13,7 @@ export class HardwareManagementController {
     this.commandService.executeCommand<undefined>(this.REBOOT);
   }
 
-  @Get('reboot')
+  @Get('shutdown')
   public shutdown(): void {
     this.commandService.executeCommand<undefined>(this.SHUTDOWN);
   }
