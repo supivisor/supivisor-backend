@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Install required npm packages
-npm install
-
 # Update project
 git checkout main
 git pull
+
+# Install required npm packages
+npm install
 
 # Build project
 npm run build
