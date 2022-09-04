@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { IndoorConditionsService } from './indoor-conditions.service';
 import { IndoorConditionsController } from './indoor-conditions.controller';
-import { ShellCommandService } from '../shell-command/shell-command.service';
+import { ShellCommandService } from '../../shared/shell-command/shell-command.service';
 
 @Module({
   controllers: [IndoorConditionsController],

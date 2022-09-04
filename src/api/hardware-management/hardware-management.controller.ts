@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { ShellCommandService } from '../shell-command/shell-command.service';
+import { ShellCommandService } from '../../shared/shell-command/shell-command.service';
 
 @Controller('manage')
 export class HardwareManagementController {

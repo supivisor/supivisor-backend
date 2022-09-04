@@ -1,4 +1,4 @@
-import { ShellCommandResult } from '../../shell-command/models/shell-command-result';
+import { ShellCommandResult } from '../../../shared/shell-command/models/shell-command-result';
 
 export class HardwareStatus {
   cpuTemp: number;

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { ShellCommandService } from '../shell-command/shell-command.service';
+import { ShellCommandService } from '../../shared/shell-command/shell-command.service';
 import { HardwareStatusCommandParsers } from './utils/hardware-status-command-parsers';
 import { combineLatest, map, Observable } from 'rxjs';
-import { ShellCommandResult } from '../shell-command/models/shell-command-result';
+import { ShellCommandResult } from '../../shared/shell-command/models/shell-command-result';
 import { HardwareStatus } from './models/hardware-status';
 
 @Injectable()
