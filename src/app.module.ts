@@ -6,6 +6,7 @@ import { IndoorConditionsModule } from './api/indoor-conditions/indoor-condition
 import { HardwareManagementModule } from './api/hardware-management/hardware-management.module';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
+import { SensorsModule } from './api/sensors/sensors.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { DatabaseModule } from './database/database.module';
     IndoorConditionsModule,
     HardwareManagementModule,
     DatabaseModule,
+    SensorsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
