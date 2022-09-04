@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
@@ -15,6 +15,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 })
 export class DatabaseModule {
   constructor() {
-    console.log(process.env.DATABASE_URL);
+    DatabaseModule.checkIfDatabaseUrlExists();
+  }
+
+  private static checkIfDatabaseUrlExists() {
+    const uri = process.env.DATABASE_URI;
+    if (!uri)
+      throw new Error(
+        `Database URI not defined.\nCheck your .env file and see if there is defined a variable named 'DATABASE_URI'`,
+      );
   }
 }

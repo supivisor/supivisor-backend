@@ -5,7 +5,7 @@ import { HardwareStatusModule } from './modules/hardware-status/hardware-status.
 import { IndoorConditionsModule } from './modules/indoor-conditions/indoor-conditions.module';
 import { HardwareManagementModule } from './modules/hardware-management/hardware-management.module';
 import { ConfigModule } from '@nestjs/config';
-import { DatabaseModule } from './modules/database/database.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
